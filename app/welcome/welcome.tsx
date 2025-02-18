@@ -64,6 +64,17 @@ export function Welcome() {
                   value={filterString}
                   onChange={(e) => updateFilterString(e.target.value)}
                   color="success"
+                  sx={{
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "white !important"
+                    },
+                    "& .MuiOutlinedInput-input": {
+                      color: "white !important"
+                    },
+                    "& .MuiInputLabel-root": {
+                      color: "white !important"
+                    }
+                  }}
                 />
               </div>
 
@@ -84,7 +95,7 @@ export function Welcome() {
                     alignItems: "center"
                   },
                   "& .MuiDataGrid-columnHeaderTitle": {
-                    color: "white",
+                    color: "black",
                   },
                   "& .MuiTablePagination-root": {
                     color: "white"

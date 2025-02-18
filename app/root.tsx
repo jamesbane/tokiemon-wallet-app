@@ -7,18 +7,8 @@ import {
   ScrollRestoration,
 } from "react-router";
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { WagmiProvider } from "wagmi";
 import type { Route } from "./+types/root";
 import "./app.css";
-import { config } from "./config";
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -35,7 +25,7 @@ export const links: Route.LinksFunction = () => [
 
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const queryClient = new QueryClient()
+
   return (
     <html lang="en">
       <head>
@@ -45,13 +35,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <WagmiProvider config={config}>
-          <QueryClientProvider client={queryClient}>
-            {children}
-            <ScrollRestoration />
-            <Scripts />
-          </QueryClientProvider>
-        </WagmiProvider>
+        {children}
+        <ScrollRestoration />
+        <Scripts />
       </body>
     </html >
   );
@@ -59,9 +45,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <ThemeProvider theme={darkTheme} noSsr>
-      <Outlet />
-    </ThemeProvider>
+    <Outlet />
   )
 }
 
